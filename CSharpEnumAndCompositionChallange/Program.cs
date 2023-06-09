@@ -1,3 +1,6 @@
 ﻿using CSharpEnumAndCompositionChallange.Entities;
 
-ShowProgram.Show();
+Client clientData = ShowProgram.ClientDataSection();
+Order orderData = ShowProgram.OrderDataSection(clientData);
+Order itemData = ShowProgram.ItemDataSection(orderData);
+ShowProgram.Summary(itemData);

@@ -5,8 +5,8 @@ namespace CSharpEnumAndCompositionChallange.Entities
 {
     internal class ShowProgram
     {
-        // Show the program into the Program.cs
-        public static void Show()
+        // Shows the client data section
+        public static Client ClientDataSection()
         {
             // Requests the client data
             Console.WriteLine("Enter client data:");
@@ -27,18 +27,28 @@ namespace CSharpEnumAndCompositionChallange.Entities
             do
             {
                 // Gets the client's birth date and checks if it's valid
-                isValidBirthDate = DateOnly.TryParse(Console.ReadLine(), out clientBirthDate);
+                isValidBirthDate = DateOnly.TryParse(
+                    Console.ReadLine(),
+                    out clientBirthDate);
 
                 // If the birth day format isn't valid, shows the alert message
                 if (!isValidBirthDate)
                 {
-                    Console.WriteLine("Invalid date format. Please enter the birth date in the format DD/MM/YYYY:");
+                    Console.WriteLine("Invalid date format." +
+                        "Please enter the birth date in the format" +
+                        "DD/MM/YYYY:");
                 }
             } while (!isValidBirthDate);
 
             // Creates new client
             Client client = new(clientName, clientEmail, clientBirthDate);
 
+            return client;
+        }
+
+        // Shows the order data section
+        public static Order OrderDataSection(Client client)
+        {
             // Requests the order data
             Console.WriteLine();
             Console.WriteLine("Enter order data:");
@@ -51,18 +61,26 @@ namespace CSharpEnumAndCompositionChallange.Entities
             do
             {
                 // Gets the order status and checks if it's valid
-                isValidStatus = Enum.TryParse(Console.ReadLine(), out orderStatus);
+                isValidStatus = Enum.TryParse(Console.ReadLine(),
+                    out orderStatus);
 
                 // If the status input isn't valid, shows the alert message
                 if (!isValidStatus)
                 {
-                    Console.WriteLine("Invalid status. Please enter a valid order status:");
+                    Console.WriteLine(
+                        "Invalid status. Please enter a valid order status:");
                 }
             } while (!isValidStatus);
 
             // Creates new order
             Order order = new(DateTime.Now, orderStatus, client);
 
+            return order;
+        }
+
+        // Shows the item data section
+        public static Order ItemDataSection(Order order)
+        {
             // Requests the quantity of order items
             Console.Write("How many items in this order? ");
             int n;
@@ -72,22 +90,25 @@ namespace CSharpEnumAndCompositionChallange.Entities
             do
             {
                 // Gets the quantity of items and checks if it's valid
-                isValidQuantity = int.TryParse(Console.ReadLine(), out n) && n > 0;
+                isValidQuantity = int.TryParse(Console.ReadLine(),
+                    out n)
+                    && n > 0;
 
                 // If the quantity os items isn't valid, shows alert message
                 if (!isValidQuantity)
                 {
-                    Console.WriteLine("Invalid input. Please enter a positive integer:");
+                    Console.WriteLine("Invalid input." +
+                        "Please enter a positive integer:");
                 }
             } while (!isValidQuantity);
 
-            // Runs the same amount of times as items
+            // Runs the same number of times as items
             for (int i = 1; i <= n; i++)
             {
                 // Request the items data
                 Console.WriteLine();
                 Console.WriteLine($"Enter #{i} item data:");
-                // Requests the item name
+                // Requests the product name
                 Console.Write("Product name: ");
                 string productName = Console.ReadLine();
 
@@ -100,12 +121,17 @@ namespace CSharpEnumAndCompositionChallange.Entities
                 do
                 {
                     // Gets the product price and checks if it's valid
-                    isValidPrice = double.TryParse(Console.ReadLine(), NumberStyles.Float, CultureInfo.InvariantCulture, out productPrice) && productPrice > 0;
+                    isValidPrice = double.TryParse(Console.ReadLine(),
+                        NumberStyles.Float,
+                        CultureInfo.InvariantCulture,
+                        out productPrice)
+                        && productPrice > 0;
 
                     // If the product Price isn't valid, shows alert message
                     if (!isValidPrice)
                     {
-                        Console.WriteLine("Invalid input. Please enter a positive decimal number:");
+                        Console.WriteLine("Invalid input." +
+                            "Please enter a positive decimal number:");
                     }
                 } while (!isValidPrice);
 
@@ -121,23 +147,33 @@ namespace CSharpEnumAndCompositionChallange.Entities
                 do
                 {
                     // Gets the quantity of products and check if it's valid
-                    isValidItemQuantity = int.TryParse(Console.ReadLine(), out productQuantity) && productQuantity > 0;
+                    isValidItemQuantity = int.TryParse(Console.ReadLine(),
+                        out productQuantity)
+                        && productQuantity > 0;
 
                     // If the quantity of products isn't valid, shows the alert message
                     if (!isValidItemQuantity)
                     {
-                        Console.WriteLine("Invalid input. Please enter a positive integer:");
+                        Console.WriteLine("Invalid input." +
+                            "Please enter a positive integer:");
                     }
                 } while (!isValidItemQuantity);
 
                 // Creates the order item
-                OrderItem orderItem = new(productQuantity, productPrice, product);
+                OrderItem orderItem = new(productQuantity,
+                    productPrice,
+                    product);
 
                 // Add the order item into the order
                 order.AddItem(orderItem);
             }
 
-            // Shows order summary
+            return order;
+        }
+
+        // Shows order summary
+        public static void Summary(Order order)
+        {
             Console.WriteLine();
             Console.WriteLine(order);
         }

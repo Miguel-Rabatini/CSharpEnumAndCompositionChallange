@@ -9,10 +9,10 @@
         {
         }
 
-        public Product(string name, double price)
+        public Product(string productName, double productPrice)
         {
-            Name = name;
-            Price = price;
+            Name = productName;
+            Price = productPrice;
         }
     }
 }

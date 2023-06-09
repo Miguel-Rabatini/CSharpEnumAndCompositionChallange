@@ -15,10 +15,12 @@ namespace CSharpEnumAndCompositionChallange.Entities
         {
         }
 
-        public Order(DateTime moment, OrderStatus status, Client client)
+        public Order(DateTime orderMoment,
+            OrderStatus orderStatus,
+            Client client)
         {
-            Moment = moment;
-            Status = status;
+            Moment = orderMoment;
+            Status = orderStatus;
             Client = client;
         }
 

@@ -12,10 +12,12 @@ namespace CSharpEnumAndCompositionChallange.Entities
         {
         }
 
-        public OrderItem(int quantity, double price, Product product)
+        public OrderItem(int productQuantity,
+            double productPrice,
+            Product product)
         {
-            Quantity = quantity;
-            Price = price;
+            Quantity = productQuantity;
+            Price = productPrice;
             Product = product;
         }
 

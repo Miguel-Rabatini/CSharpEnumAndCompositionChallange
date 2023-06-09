@@ -10,11 +10,13 @@
         {
         }
 
-        public Client(string name, string email, DateOnly birthDate)
+        public Client(string clientName,
+            string clientEmail,
+            DateOnly clientBirthDate)
         {
-            Name = name;
-            Email = email;
-            BirthDate = birthDate;
+            Name = clientName;
+            Email = clientEmail;
+            BirthDate = clientBirthDate;
         }
 
         public override string ToString()
