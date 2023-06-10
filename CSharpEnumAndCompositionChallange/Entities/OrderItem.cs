@@ -4,9 +4,19 @@ namespace CSharpEnumAndCompositionChallange.Entities
 {
     internal class OrderItem
     {
-        public int Quantity { get; set; }
-        public double Price { get; set; }
-        public Product Product { get; set; }
+        private int _quantity;
+        public double Price { get; private set; }
+        public Product Product { get; private set; }
+
+        public int Quantity
+        {
+            get { return _quantity; }
+            private set
+            {
+                if (value > 0)
+                    _quantity = value;
+            }
+        }
 
         public OrderItem()
         {
@@ -23,7 +33,7 @@ namespace CSharpEnumAndCompositionChallange.Entities
 
         public double SubTotal()
         {
-            double subTotal = Product.Price * Quantity;
+            double subTotal = Price * Quantity;
 
             return subTotal;
         }
@@ -31,7 +41,7 @@ namespace CSharpEnumAndCompositionChallange.Entities
         public override string ToString()
         {
             return $"{Product.Name}, $" +
-                Product.Price.ToString("F2", CultureInfo.InvariantCulture) +
+                Price.ToString("F2", CultureInfo.InvariantCulture) +
                 $", Quantity: {Quantity}, Subtotal: $" +
                 SubTotal().ToString("F2", CultureInfo.InvariantCulture);
         }

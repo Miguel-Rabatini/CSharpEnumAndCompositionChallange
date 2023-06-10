@@ -1,10 +1,10 @@
 ﻿namespace CSharpEnumAndCompositionChallange.Entities.Enums
 {
-    internal enum OrderStatus : int
+    internal enum OrderStatus
     {
-        PendingPayment = 0,
-        Processing = 1,
-        Shipped = 2,
-        Delivered = 3
+        PendingPayment,
+        Processing,
+        Shipped,
+        Delivered
     }
 }

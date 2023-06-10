@@ -6,10 +6,10 @@ namespace CSharpEnumAndCompositionChallange.Entities
 {
     internal class Order
     {
-        public DateTime Moment { get; set; }
-        public OrderStatus Status { get; set; }
-        public Client Client { get; set; } = new();
-        public List<OrderItem> Items { get; set; } = new();
+        public DateTime Moment { get; private set; }
+        public OrderStatus Status { get; private set; }
+        public Client Client { get; private set; }
+        public List<OrderItem> Items { get; private set; } = new();
 
         public Order()
         {
